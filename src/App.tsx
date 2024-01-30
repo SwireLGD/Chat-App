@@ -1,8 +1,7 @@
-import React from "react";
 import MessageList from "./Components/MessageList/MessageList";
 import MessageSendHandler from "./Components/SendMessage/SendMessage";
 
-const App  = () => {
+const App = () => {
   return (
     <>
     <MessageSendHandler />

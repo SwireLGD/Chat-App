@@ -2,15 +2,16 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 
-interface Props {
-  onSend: () => void;
-};
-
-const MessageSendHandler: React.FC<Props> = ({ onSend }) => {
+const MessageSendHandler: React.FC = () => {
   const [newMessage, setNewMessage] = useState('');
   const [nickname, setNickname] = useState('');
 
   const sendMessage = async () => {
+    if (!nickname.trim() || !newMessage.trim()) {
+      alert('Nickname or message cannot be empty.');
+      return;
+    }
+
     const data = new URLSearchParams();
     const url = 'http://146.185.154.90:8000/messages';
     data.set('message', newMessage);
@@ -24,7 +25,6 @@ const MessageSendHandler: React.FC<Props> = ({ onSend }) => {
 
       if (response.ok) {
         setNewMessage('');
-        onSend();
       };
 
     } catch (error) {
